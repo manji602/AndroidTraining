@@ -12,7 +12,28 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher"/>
     <!-- TODO: 右上端に寄せた ImageView を配置する -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="top|right"/>
+
     <!-- TODO: 左下端に寄せた ImageView を配置する -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+		android:layout_gravity="bottom|left"/>
     <!-- TODO: 右下端に寄せた ImageView を配置する -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+        android:layout_gravity="bottom|right"/>
     <!-- TODO: センタリングした ImageView を配置する -->
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher"
+		android:layout_gravity="center"/>
 </FrameLayout>
