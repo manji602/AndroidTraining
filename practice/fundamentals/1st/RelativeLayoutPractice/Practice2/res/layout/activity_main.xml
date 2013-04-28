@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horiozontal"
+        android:orientation="horizontal"
         android:id="@+id/LinearLayout1">
 	    <Button
 			android:id="@+id/Button1"

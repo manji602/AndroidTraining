@@ -16,19 +16,19 @@
     <!-- Hint: 4. 均等割付するボタンの画像は、左から android:src="@android:drawable/ic_menu_call", android:src="@android:drawable/ic_menu_send", android:src="@android:drawable/ic_menu_share" です -->
     <!-- TODO: 上記のまとまりの下に、幅 1 dp の区切り線を引く -->
     <FrameLayout
-        android:layout_width=wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"   
+        android:layout_marginRight="20dp"
         android:padding="1dp"
         android:background="#222222"
         android:id="@+id/profileImageFrame">
         <FrameLayout
-            android:layout_width=wrap_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="1dp"
-            android:background="#ffffff">            
+            android:background="#ffffff">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:src="@android:drawable/ic_menu_manage"
-        android:id=@+id/settingImage/>
+        android:id="@+id/settingImage"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
