@@ -12,23 +12,17 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
-        <TextView
-            android:id="@+id/TitleLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/TitleLabel" />
-        <EditText
-            android:id="@+id/TitleInput"
+        <fragment
+            android:id="@+id/MyFragment"
+            android:name="jp.mixi.assignment.controller.adv.MyFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/TitleLabel"
-            android:lines="1"
-            android:inputType="text"/>
+            android:layout_alignParentTop="true"/>
         <TextView
             android:id="@+id/BodyLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/TitleInput"
+            android:layout_below="@+id/MyFragment"
             android:text="@string/BodyLabel" />
         <EditText
             android:id="@+id/BodyInput"
