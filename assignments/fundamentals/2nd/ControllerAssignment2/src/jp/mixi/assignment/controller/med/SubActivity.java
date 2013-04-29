@@ -1,5 +1,7 @@
 package jp.mixi.assignment.controller.med;
 
+import java.io.Serializable;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,11 +16,15 @@ import android.widget.TextView;
  * @author keishin.yokomaku
  */
 public class SubActivity extends Activity implements TextWatcher {
+	private CharSequence textInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Hint: 状態遷移が何も起こっていない場合は、savedInstanceState は null です
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sub);
+        if (savedInstanceState != null){
+            textInput = (CharSequence)savedInstanceState.getSerializable("textInput");
+        }
     }
 
     @Override
@@ -42,6 +48,7 @@ public class SubActivity extends Activity implements TextWatcher {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putSerializable("textInput", (Serializable) textInput);
     }
 
     @Override
