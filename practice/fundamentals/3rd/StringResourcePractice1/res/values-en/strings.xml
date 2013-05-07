@@ -5,10 +5,13 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <!-- TODO: 実習1: ここから下に、日本語の String リソースを作る -->
-    <string name="monday">月曜日</string>
-    <string name="tuesday">火曜日 %1$d月%2$d日</string>
-    <string name="wednesday">水曜日</string>
-    <string name="thursday">木曜日</string>
-    <string name="friday">金曜日</string>
     <!-- TODO: 実習2: 日本語の String リソースに対応する英語リソースを作る -->
+    <plurals name="monday">
+        <item quantity="one">Monday</item>
+        <item quantity="other">Mondays</item>
+    </plurals>
+    <string name="tuesday">Tuesday 　%1$d / %2$d</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
 </resources>
