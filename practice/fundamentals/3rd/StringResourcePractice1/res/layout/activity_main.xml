@@ -12,6 +12,36 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
+        android:text="@string/hello_world"
+        android:id="@+id/hello_world"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hello_world"
+        android:text="@string/monday"
+        android:id="@+id/monday"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/monday"
+        android:text="@string/tuesday"
+        android:id="@+id/tuesday"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tuesday"
+        android:text="@string/wednesday"
+        android:id="@+id/wednesday"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/wednesday"
+        android:text="@string/thursday"
+        android:id="@+id/thursday"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/thursday"
+        android:text="@string/friday"
+        android:id="@+id/friday"/>
 </RelativeLayout>
