@@ -3,7 +3,9 @@ package jp.mixi.practice.res.drawable.beg;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.view.Menu;
+import android.widget.ImageView;
 
 public class MainActivity extends Activity {
 
@@ -11,6 +13,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Drawable sample_drawable = getResources().getDrawable(R.drawable.sample_drawable);
+        ImageView imageView = (ImageView)findViewById(R.id.image_view);
+        imageView.setImageDrawable(sample_drawable);
     }
 
     @Override
