@@ -4,6 +4,7 @@ package jp.mixi.assignment.res.drawable.beg;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.Button;
 
 public class MainActivity extends Activity {
 
