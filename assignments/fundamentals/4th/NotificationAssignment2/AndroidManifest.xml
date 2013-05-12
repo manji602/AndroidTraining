@@ -24,7 +24,7 @@
         </activity>
         <activity
             android:name="jp.mixi.assignment.notification.med.SubActivity1"
-            android:label="@string/app_name">
+            android:label="@string/app_name_sub1">
             <intent-filter>
                 <action android:name="jp.mixi.assignment.notification.med.android.intent.action.VIEW_MY_OWN"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -32,7 +32,7 @@
         </activity>
         <activity
             android:name="jp.mixi.assignment.notification.med.SubActivity2"
-            android:label="@string/app_name">
+            android:label="@string/app_name_sub2">
             <intent-filter>
                 <action android:name="jp.mixi.assignment.notification.med.android.intent.action.VIEW_MY_OWN"/>
                 <category android:name="android.intent.category.DEFAULT"/>

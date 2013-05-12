@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">NotificationAssignment2</string>
+    <string name="app_name_sub1">SubActivity1</string>
+    <string name="app_name_sub2">SubActivity2</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="sub_activity">Sub activity #%1$d</string>
