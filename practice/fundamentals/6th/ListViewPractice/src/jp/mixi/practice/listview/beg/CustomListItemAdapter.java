@@ -33,21 +33,21 @@ public class CustomListItemAdapter extends ArrayAdapter<String> {
         if (convertView == null) {
             // レイアウトファイルからViewを生成する
             view = mLayoutInflater.inflate(R.layout.custom_list_item, parent, false);
+            // リストアイテムに対応するデータを取得する
+            String item = getItem(position);
 
+            // 各Viewに表示する情報を設定
+            TextView text1 = (TextView) view.findViewById(R.id.TitleText);
+            text1.setText("Title:" + item);
+            TextView text2 = (TextView) view.findViewById(R.id.SubTitleText);
+            text2.setText("SubTitle:" + item);
+            
         } else {
             // レイアウトが存在する場合は使いまわす
             view = convertView;
         }
 
-        // リストアイテムに対応するデータを取得する
-        String item = getItem(position);
-
-        // 各Viewに表示する情報を設定
-        TextView text1 = (TextView) view.findViewById(R.id.TitleText);
-        text1.setText("Title:" + item);
-        TextView text2 = (TextView) view.findViewById(R.id.SubTitleText);
-        text2.setText("SubTitle:" + item);
-
+        // 一度作成したレイアウトの表示データを変更しないことにより、再利用されたデータがどこに表示されるかを確認する
         return view;
     }
 
