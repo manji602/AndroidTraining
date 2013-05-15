@@ -3,22 +3,8 @@ package jp.mixi.practice.network.networkpractice1;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
 import android.os.Build;
@@ -57,8 +43,7 @@ public class MainActivity extends Activity {
             	EditText urlEditText = (EditText)findViewById(R.id.accessUrl);
             	String urlString = urlEditText.getText().toString();
             	MyAsyncTask asyncTask = new MyAsyncTask();
-            	//asyncTask.execute(urlString, "GET", "HTTPURLConnection", "");
-            	asyncTask.execute(urlString, "GET", "HTTPClient", "");
+            	asyncTask.execute(urlString, "GET", "");
             }
         });
         View buttonPost = findViewById(R.id.buttonPost);
@@ -71,8 +56,7 @@ public class MainActivity extends Activity {
             	String urlString = urlEditText.getText().toString();
             	String postData = postEditText.getText().toString();
             	MyAsyncTask asyncTask = new MyAsyncTask();
-            	//asyncTask.execute(urlString, "POST", "HTTPURLConnection", postData);
-            	asyncTask.execute(urlString, "POST", "HTTPClient", postData);
+            	asyncTask.execute(urlString, "POST", postData);
             }
         });
     }
@@ -104,24 +88,6 @@ public class MainActivity extends Activity {
      	return responseBody;
     }
     
-    String getHTTPClient(String urlString){
-    	HttpClient client = new DefaultHttpClient();
-    	String responseBody = new String();
-        try {
-            responseBody = client.execute(new HttpGet(urlString),
-                    new ResponseHandler<String>() {
-                        public String handleResponse(HttpResponse response)
-                                throws ClientProtocolException, IOException {
-                            return EntityUtils.toString(response.getEntity());
-                        }
-                    });
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return responseBody;
-    }
-
 	String postHTTPURLConnection(String urlString, String postData){
         HttpURLConnection connection = null;
         String responseBody = new String();
@@ -155,29 +121,7 @@ public class MainActivity extends Activity {
         return responseBody;
     }
 	
-	String postHTTPClient(String urlString, String postData){
-		HttpPost request = new HttpPost(urlString);
-		String responseBody = new String();
-		try {
-			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			request.setEntity(new UrlEncodedFormEntity(params));
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
-		HttpClient client = new DefaultHttpClient();
-	    try {
-	      responseBody = client.execute(request,
-	    		  new ResponseHandler<String>() {
-	    	          public String handleResponse(HttpResponse response)
-	    	        		  throws IOException {
-	    	        	  	return EntityUtils.toString(response.getEntity());
-	    	          }
-	      });
-	    } catch (IOException e) {
-	    	e.printStackTrace();
-	    }
-	    return responseBody;
-	}
+
     
     private void disableConnectionReuseIfNecessary() {
         // HTTP connection reuse which was buggy pre-froyo
@@ -230,28 +174,16 @@ public class MainActivity extends Activity {
         //params
         //第1引数:URL
         //第2引数:GET or POST
-        //第3引数:HTTPURLConnection or HTTPClient
-        //第4引数:postData
+        //第3引数:postData
         protected Void doInBackground(String... params) {
         	String urlString = params[0];
         	String HTTPMethod = params[1];
-        	String connectMethod = params[2];
-        	String postData = params[3];
+        	String postData = params[2];
         	if (HTTPMethod == "GET") {
-        		if (connectMethod == "HTTPURLConnection"){
         			responseBody = getHTTPURLConnection(urlString);
-        		}
-        		if (connectMethod == "HTTPClient"){
-        			responseBody = getHTTPClient(urlString);
-        		}
         	}
         	if (HTTPMethod == "POST") {
-        		if (connectMethod == "HTTPURLConnection"){
         			responseBody = postHTTPURLConnection(urlString, postData);
-        		}
-        		if (connectMethod == "HTTPClient"){
-        			responseBody = postHTTPClient(urlString, postData);
-        		}    		
         	}
             return null;
         }
