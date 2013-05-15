@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -33,7 +34,7 @@ public class MainActivity extends Activity {
      *
      * @author keishin.yokomaku
      */
-    private class MyAsyncTask extends AsyncTask<Void, Void, Void> {
+    private class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
         /**
          * 非同期処理を実行する前に UI スレッドで実行する処理を書く
          */
@@ -47,8 +48,11 @@ public class MainActivity extends Activity {
          * 非同期処理の進捗を受け取るコールバック。
          */
         @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate(values);
+        protected void onProgressUpdate(Integer... progress) {
+            super.onProgressUpdate(progress);
+            TextView text = (TextView)findViewById(R.id.text);
+            //ここでUIを変更する分には落ちない
+            //text.setText("(" + progress[0] + ")");
             Toast.makeText(MainActivity.this, "onProgressUpdate", Toast.LENGTH_SHORT).show();
         }
 
@@ -59,17 +63,20 @@ public class MainActivity extends Activity {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-                publishProgress();
+                publishProgress(20);
                 Thread.sleep(2000L);
-                publishProgress();
+                TextView text = (TextView)findViewById(R.id.text);
+                //ここでUIをいじるとandroid.view.ViewRoot$CalledFromWrongThreadExceptionで落ちる
+                //text.setText("(example)");
+                publishProgress(40);
                 Thread.sleep(2000L);
-                publishProgress();
+                publishProgress(60);
                 Thread.sleep(2000L);
-                publishProgress();
+                publishProgress(80);
                 Thread.sleep(2000L);
-                publishProgress();
+                publishProgress(90);
                 Thread.sleep(2000L);
-                publishProgress();
+                publishProgress(100);
             } catch (InterruptedException e) {
                 Log.e(MyAsyncTask.class.getSimpleName(), "thread interrupted: ", e);
             }
