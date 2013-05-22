@@ -1,11 +1,9 @@
 package jp.mixi.assignment.network.networkAssignment;
 
-<<<<<<< Updated upstream
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-=======
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,7 +18,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Xml;
->>>>>>> Stashed changes
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -105,6 +102,18 @@ public class MainActivity extends Activity {
      *
      * @author keishin.yokomaku
      */
+<<<<<<< Updated upstream
+
+    public class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
+    	String responseBody = new String();
+    	String youtubeResponse = new String();
+        /**
+         * 非同期処理を実行する前に UI スレッドで実行する処理を書く
+         */
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
     public class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
     	String responseBody = new String();
