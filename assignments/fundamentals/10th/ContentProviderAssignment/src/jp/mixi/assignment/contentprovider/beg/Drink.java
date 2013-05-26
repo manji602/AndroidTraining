@@ -11,13 +11,14 @@ public class Drink implements BaseColumns {
 
     // TODO:AUTHORITYを定義してください
     // 一意となる識別子にする
-    public static final String AUTHORITY = "";
+    public static final String AUTHORITY = "jp.mixi.assignment.contentprovider.loader.Drink";
 
     // TODO:CONTENT_URIを定義してください
-    public static final Uri CONTENT_URI = Uri.parse("");
+    public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/drink");
 
     public static final String DRINK_TABLE_NAME = "drink";
-
+    public static final int DRINK = 1;
+    
     public static final String COLUMN_NAME_DRINK_NAME = "name";
     public static final String COLUMN_NAME_DRINK_PRICE = "price";
 
