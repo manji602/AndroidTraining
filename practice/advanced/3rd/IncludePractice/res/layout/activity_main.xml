@@ -10,9 +10,14 @@
 
     <!-- 自由にincludeを使用したレイアウトを作成してください -->
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_world" />
+        <include layout="@layout/panel_merge" />
+    </LinearLayout>
 </RelativeLayout>
