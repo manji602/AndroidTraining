@@ -1,16 +1,18 @@
 
 package jp.mixi.practice.dialog.med;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity implements ListItemSelectionDialogFragment.Callbacks{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +46,6 @@ public class MainActivity extends Activity {
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
-
         // TODO: 長押しメニューに、削除・キャンセル、の 2 つの項目を表示する
         getMenuInflater().inflate(R.menu.main, menu);
     }
@@ -53,6 +54,25 @@ public class MainActivity extends Activity {
     public boolean onContextItemSelected(MenuItem item) {
         // TODO: 長押しメニューの、削除、の項目の選択をハンドリングして、確認のためのダイアログを
         // ListItemSelectionDialogFragment を使用して表示する
-        return super.onContextItemSelected(item);
+        AdapterContextMenuInfo info = (AdapterContextMenuInfo)item.getMenuInfo();
+        int position = info.position;
+
+    	switch (item.getItemId()){
+    	case R.id.cancel:
+    		return true;
+    	case R.id.delete:
+        	DialogFragment myDialogFragment = new ListItemSelectionDialogFragment(position);
+            myDialogFragment.show(getSupportFragmentManager(), "my_dialog_fragment");
+    		return true;
+    	default:
+            return super.onContextItemSelected(item);    			
+    	}
+    }
+    public void deleteItemFromList(int position) {
+        ListView list = (ListView) findViewById(R.id.ListView);
+        String item = (String)list.getItemAtPosition(position);
+        @SuppressWarnings("unchecked")
+		ArrayAdapter<String> adapter = (ArrayAdapter<String>)list.getAdapter();
+        adapter.remove(item);
     }
 }
