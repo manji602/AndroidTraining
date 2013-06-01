@@ -3,8 +3,6 @@ package jp.mixi.assignment.network.networkAssignment;
 import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
@@ -12,31 +10,20 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.app.Activity;
-import android.util.Xml;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-
+    String YOUTUBE_URL = "http://gdata.youtube.com/feeds/api/standardfeeds/JP/top_rated?time=today&max-results=1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
-            StrictMode.setThreadPolicy(
-                    new StrictMode.ThreadPolicy.Builder()
-                    .detectNetwork()
-                    .penaltyDeath()
-                    .build());
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         View buttonGet = findViewById(R.id.buttonGet);
@@ -55,7 +42,6 @@ public class MainActivity extends Activity {
     	HttpURLConnection connection = null;
     	String responseBody = new String();
     	try {
-    		String YOUTUBE_URL = "http://gdata.youtube.com/feeds/api/standardfeeds/top_rated";
     		URL url = new URL(YOUTUBE_URL);
     		connection = (HttpURLConnection) url.openConnection();
     		connection.connect();
@@ -102,18 +88,6 @@ public class MainActivity extends Activity {
      *
      * @author keishin.yokomaku
      */
-<<<<<<< Updated upstream
-
-    public class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
-    	String responseBody = new String();
-    	String youtubeResponse = new String();
-        /**
-         * 非同期処理を実行する前に UI スレッドで実行する処理を書く
-         */
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
 
     public class MyAsyncTask extends AsyncTask<Void, Integer, Void> {
     	String responseBody = new String();
@@ -152,32 +126,27 @@ public class MainActivity extends Activity {
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
             
-        	XmlPullParser xmlPullParser = Xml.newPullParser();
-        	try {
-        		InputStream bais = new ByteArrayInputStream(youtubeResponse.getBytes("utf-8"));
-        		xmlPullParser.setInput(bais, "UTF-8");
-        		int eventType = xmlPullParser.getEventType();
-        		int counter = 0;
-        		while (eventType != XmlPullParser.END_DOCUMENT) {
-        			if (eventType == XmlPullParser.START_TAG){// && xmlPullParser.getName().equals("name")){
-        				counter ++;
-        			}
-        			eventType = xmlPullParser.next();
-        		}
-        		//responseBody = XmlPullParser.END_DOCUMENT + " ";
-        		responseBody = Integer.toString(counter) + "";
-        	} catch (Exception e) {
-        		Toast.makeText(MainActivity.this, e + " ", Toast.LENGTH_LONG).show();
-        		Toast.makeText(MainActivity.this, e + " ", Toast.LENGTH_LONG).show();
-        		e.printStackTrace();
-                TextView text = (TextView)findViewById(R.id.response);
-                text.setText(e + "");
-        	}
-            
-            
-            Toast.makeText(MainActivity.this, responseBody + " ", Toast.LENGTH_SHORT).show();
+        	responseBody = parseYoutubeXml( youtubeResponse );
             TextView text = (TextView)findViewById(R.id.response);
-            //text.setText(youtubeResponse);
+            text.setText(responseBody);
         }
+    }
+    public String parseYoutubeXml(String xml) {
+        String responseBody = new String();
+        try {
+            XmlPullParser xmlPullParser = XmlPullParserFactory.newInstance().newPullParser();
+            xmlPullParser.setInput( new StringReader ( xml ) );
+            int eventType = xmlPullParser.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                if (eventType == XmlPullParser.START_TAG && xmlPullParser.getName().equals("title")){
+                    eventType = xmlPullParser.next();
+                    responseBody = xmlPullParser.getText();
+                }
+                eventType = xmlPullParser.next();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return responseBody;
     }
 }
