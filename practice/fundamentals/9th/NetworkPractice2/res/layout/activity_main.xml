@@ -24,7 +24,8 @@
             android:id="@+id/httpBody"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="パラメータ" />
+            android:hint="パラメータ"
+            android:text="hoge=huga&amp;foo=bar" />
 
         <Button
             android:id="@+id/buttonGet"
@@ -39,7 +40,7 @@
             android:text="post" />
 
         <TextView
-            android:id="@+id/responce"
+            android:id="@+id/response"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
