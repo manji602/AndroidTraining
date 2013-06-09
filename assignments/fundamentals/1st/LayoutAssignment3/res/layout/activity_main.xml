@@ -1,8 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
+
     <!-- TODO: 左側から順に、下記の View を配置していき、そのまとまりを画面上部に揃える -->
     <!-- 1. プロフィール画像(ic_launcher)と、それを囲う四角形の枠、その下に プロフィール と書かれた文字 -->
     <!-- 2. 1. の右側の上半分に、ニックネームの表示と、そのさらに右端に設定アイコン -->
@@ -14,7 +15,111 @@
     <!-- Hint: 3. 区切り線を引く専用の UI はありません。背景色を android:background="#393939" にして、区切り線ぽく扱う工夫が必要です -->
     <!-- Hint: 4. 均等割付するボタンの画像は、左から android:src="@android:drawable/ic_menu_call", android:src="@android:drawable/ic_menu_send", android:src="@android:drawable/ic_menu_share" です -->
     <!-- TODO: 上記のまとまりの下に、幅 1 dp の区切り線を引く -->
+    <FrameLayout
+        android:layout_width=wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"   
+        android:padding="1dp"
+        android:background="#222222"
+        android:id="@+id/profileImageFrame">
+        <FrameLayout
+            android:layout_width=wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:background="#ffffff">            
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_launcher"
+            android:padding="1dp"
+            android:id="@+id/profileImage"/>
+        </FrameLayout>
+    </FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/profileImageFrame"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="プロフィール"
+        android:textSize="10sp"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/profileImageFrame"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:padding="5dp"
+        android:text="KeithYokoma"
+        android:id="@+id/nickname"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/nickname"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:src="@android:drawable/ic_menu_manage"
+        android:id=@+id/settingImage/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_toRightOf="@+id/profileImageFrame"
+        android:layout_below="@+id/nickname"
+        android:layout_marginRight="10dp"
+        android:background="#393939"
+        android:id="@+id/hr1"/>
+
+	<LinearLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_toRightOf="@+id/profileImageFrame"
+	    android:layout_below="@+id/hr1"
+	    android:layout_marginRight="10dp"
+	    android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"
+	    android:orientation="horizontal"
+	    android:id="@+id/operationIcons">
+	    <ImageView
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:background="#dddddd"
+			android:paddingLeft="5dp"
+			android:paddingRight="5dp"
+			android:layout_margin="5dp"
+            android:src="@android:drawable/ic_menu_call"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#dddddd"
+            android:paddingLeft="5dp"
+			android:paddingRight="5dp"
+			android:layout_margin="5dp"
+            android:src="@android:drawable/ic_menu_send"/>
+    	<ImageView
+        	android:layout_width="0dp"
+        	android:layout_height="wrap_content"
+        	android:layout_weight="1"
+        	android:background="#dddddd"
+			android:paddingLeft="5dp"
+			android:paddingRight="5dp"
+			android:layout_margin="5dp"
+        	android:src="@android:drawable/ic_menu_share"/>
+	</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/operationIcons"
+        android:layout_marginTop="10dp"
+        android:background="#393939"
+        android:id="@+id/hr2"/>
 
     <!-- TODO: 左側から順に、下記の View を配置していき、そのまとまりを画面下部に揃える -->
     <!-- 1. ic_launcher のアイコンと、その下に メニュー の文字を表示し、アイコンの右肩に 30 と書かれたバッチを表示するボタン -->
@@ -30,4 +135,106 @@
 
     <!-- TODO: 上記の View の上に、お知らせを表示する View を配置する -->
     <!-- Hint: 1. お知らせを表示する View の背景は android:background="@drawable/notify_button_state_list" にします -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/hr3"
+        android:text="30 件のお知らせがあります！"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/notify_button_state_list"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/buttonMenu"
+        android:background="#393939"
+        android:id="@+id/hr3"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/button_state_list"
+		android:padding="10dp"
+        android:src="@drawable/ic_launcher"
+        android:id="@+id/buttonMenu"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/buttonMenu"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:text="メニュー"
+        android:textSize="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/buttonMenu"
+        android:layout_alignRight="@+id/buttonMenu"
+        android:layout_margin="5dp"
+        android:text="30"
+        android:textSize="16sp"
+        android:background="@drawable/badge"/>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_alignTop="@+id/buttonMenu"
+        android:layout_alignRight="@+id/buttonMenu"
+        android:background="#393939"
+        android:id="@+id/vr1"/>
+
+    <RelativeLayout
+        android:id="@+id/frameSubmitVoice"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/vr1"
+        android:layout_alignTop="@+id/vr1"
+        android:layout_toLeftOf="@+id/vr2"
+        android:layout_toRightOf="@+id/vr1"
+        android:background="@drawable/button_state_list" >
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/button_state_list"
+            android:src="@drawable/ic_launcher"
+            android:id="@+id/buttonSubmitVoice"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/buttonSubmitVoice"
+            android:layout_marginLeft="10dp"
+            android:text="つぶやきを投稿"
+            android:textSize="10dp"
+            android:id="@+id/textSubmitVoice"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@+id/buttonRecent"
+        android:layout_alignTop="@+id/buttonRecent"
+        android:background="#393939"
+        android:id="@+id/vr2"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:padding="10dp"
+        android:background="@drawable/button_state_list"
+        android:src="@drawable/ic_launcher"
+        android:id="@+id/buttonRecent"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonRecent"
+        android:layout_alignBottom="@+id/buttonRecent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="最近"
+        android:textSize="10dp"/>
 </RelativeLayout>
